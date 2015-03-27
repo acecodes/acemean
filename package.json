@@ -1,0 +1,30 @@
+{
+  "name": "acemean",
+  "version": "1.0.0",
+  "description": "A MEAN test app.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ace Eddleman",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acecodes/acemean"
+  },
+  "keywords": [
+    "MongoDB",
+    "Express",
+    "AngularJS",
+    "Node.js"
+  ],
+  "bugs": {
+    "url": "https://github.com/acecodes/acemean/issues"
+  },
+  "homepage": "https://github.com/acecodes/acemean",
+  "dependencies": {
+    "connect": "^3.3.5",
+    "express": "^4.12.3",
+    "grunt": "^0.4.5"
+  }
+}
