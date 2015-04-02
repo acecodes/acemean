@@ -6,6 +6,9 @@ bodyParser = require('body-parser'),
 methodOverride = require('method-override'),
 session = require('express-session');
 
+var uri = 'mongodb://localhost/acemean';
+var db = require('mongoose').connect(uri);
+
 module.exports = function() {
     var app = express();
 
