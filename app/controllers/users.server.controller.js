@@ -1,3 +1,5 @@
+'use strict';
+
 var User = require('mongoose').model('User');
 
 exports.create = function(req, res, next) {
