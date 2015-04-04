@@ -85,4 +85,20 @@ UserSchema.set('toJSON', {
     virtuals: true
 });
 
+var PostSchema = new Schema({
+    title: {
+        type: String,
+        required: true
+    },
+    content: {
+        type: String,
+        required: true
+    },
+    author: {
+        type: Schema.ObjectId,
+        ref: 'User'
+    }
+});
+
 mongoose.model('User', UserSchema);
+mongoose.model('Post', PostSchema);
