@@ -1,7 +1,8 @@
 'use strict';
 
 var mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
+    Schema = mongoose.Schema,
+    crypto = mongoose.Schema;
 
 var UserSchema = new Schema({
     firstName: String,
@@ -69,6 +70,25 @@ UserSchema.statics.findOneByUsername = function(username, callback) {
 // Can be used on any instance of UserSchema, i.e. user.authenticate('password')
 UserSchema.methods.authenticate = function(password) {
     return this.password === password;
+};
+
+
+// Salting password
+UserSchema.pre('save', function(next) {
+    if (this.password) {
+        this.salt = new Buffer(crypto.randomBytes(16).toString('base64'), 'base64');
+        this.password = this.hashPassword(this.password);
+    }
+
+    next();
+});
+
+UserSchema.methods.hashPassword = function(password) {
+    return crypto.pbkdf2Sync(password, this.salt, 10000, 64).toString('base64');
+};
+
+UserSchema.methods.authenticate = function(password) {
+    return this.password === this.hashPassword(password);
 };
 
 // Middleware for logging POST results
